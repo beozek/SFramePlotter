@@ -86,10 +86,13 @@ class SPlotter
   void SetPsFilename(TString name);
   void SetShapeSysHists(std::vector<TObjArray*> arr){m_shapesys_arr = arr;}
   void SetLogy(Bool_t flag){bPlotLogy = flag;}
+  void SetKStest(Bool_t flag){bKStest = flag;}
   void SetIgnoreEmptyBins(Bool_t flag){bIgnoreEmptyBins = flag;}
 
   void SetScaleSysUnc(TObjArray* arr){m_ScaleSysUncName = arr;}
   void SetSysUncWeight(TArrayF arr){m_sysweight = arr;}
+
+  void KStest(std::vector<SHist*> hists);
 
  private:
 
@@ -129,6 +132,7 @@ class SPlotter
   bool  bZScoreInRatio;     // plot the z-score instead of the usual ratio
   bool  need_update;        // should the canvas get an update?
   bool  bPlotLogy;          // plot all plots with log y scale
+  bool  bKStest;          // print KS test on the plot
   bool  bIgnoreEmptyBins;   // don't plot empty bins in the ratio
 
 };

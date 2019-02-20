@@ -55,6 +55,7 @@ public:
     void SetSubstractBkgd(Bool_t flag = true){bSubstractBkgd = flag;}
     void SetPlotRatio(Bool_t flag=true){bPlotRatio = flag;}
     void SetDrawLumi(Bool_t flag=true){bDrawLumi = flag;}
+    void SetKStest(Bool_t flag=true){bKStest = flag;}
     
     void SetSampleNames(TObjArray* SampleNames);
     void SetHistColors(TArrayI colors);
@@ -84,7 +85,7 @@ private:
     Bool_t  bJetShapesPerSlice; // perform fit of Pt-balance histograms?
     Bool_t  bSubstractBkgd;     // substract background from the first chain?
     Bool_t  bPlotRatio;         // should a ratio be plotted?
-  
+    Bool_t  bKStest;            // print KS test value on the plot   
 };
 
 #endif //  __JETANAPLOTTER_H

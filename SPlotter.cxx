@@ -52,6 +52,8 @@ SPlotter::SPlotter()
   need_update  = true;
   bPlotLogy    = false;
   bIgnoreEmptyBins = false;
+  bKStest = false;//TEST
+  //  bKStest = true;//TEST
  
 
 }
@@ -606,14 +608,14 @@ void SPlotter::ProcessAndPlot(std::vector<TObjArray*> histarr)
       if (bDrawLumi) DrawLumi();
       // draw the ratio
       if (bPlotRatio){
+	if(bKStest) KStest(hists);    
 	if (bZScoreInRatio) PlotZScore(hists, ipad);
 	else PlotRatios(hists, ipad);
       }
-    
     }
-
     ++iplot;
   }
+
 
   // done!
   if (!bSingleEPS) DrawPageNum();
@@ -732,7 +734,7 @@ void SPlotter::PlotLumiYield(SHist* hist, int ipad)
   text->SetNDC();
   text->SetTextColor(kBlack);
   text->SetTextSize(0.05);
-  if (bSingleEPS)  text->SetTextSize(0.04);
+  if (bSingleEPS)  text->SetTextSize(0.05);
   text->SetTextAlign(11);
   TString info = TString::Format("#chi^{2} / ndf");
   text->DrawLatex(0.5, 0.30, info.Data());
@@ -1338,7 +1340,7 @@ void SPlotter::DrawLegend(vector<SHist*> hists)
   leg->SetBorderSize(0);
   leg->SetTextFont(42);
   leg->SetFillStyle(0);
-  if (bSingleEPS) leg->SetTextSize(0.025);
+  //  if (bSingleEPS) leg->SetTextSize(0.03); //size of labels for Bkg sources
 
   for (Int_t i=0; i<narr; ++i){
     SHist* sh = hists[i];
@@ -1388,7 +1390,8 @@ void SPlotter::DrawLegend(vector<SHist*> hists)
 
 void SPlotter::DrawLumi()
 {
-  TString infotext = TString::Format("%3.1f fb^{-1} (8 TeV)", m_lumi);
+  //  TString infotext = TString::Format("%3.1f fb^{-1} (8 TeV)", m_lumi);
+  TString infotext = TString::Format("%3.1f fb^{-1} (13 TeV)", m_lumi);
   TLatex *text1 = new TLatex(3.5, 24, infotext);
   text1->SetNDC();
   text1->SetTextAlign(33);
@@ -1484,6 +1487,47 @@ SHist* SPlotter::SelData(vector<SHist*> hists)
     }
   }
   return h;
+}
+void SPlotter::KStest(vector<SHist*> hists){
+  //  cout<<"--- KStest ---"<<endl;
+  // KS test                                                                                                                                                     
+  //https://root.cern.ch/doc/master/classTH1.html#a2747cabe9ebe61c2fdfd74ff307cef3a                                                                              
+
+  // first get the basic histograms
+  SHist* sstack = SelStack(hists);
+  SHist* sdata  = SelData(hists);
+  
+  vector<SHist*> ratios;
+
+  if (!sstack || !sdata){    
+    return;
+  }
+  
+  SHist* rd = (SHist*) sdata->Duplicate();
+  TH1D*  rdhist = (TH1D*) rd->GetHist();
+  //  rdhist->Print();
+  // get the denominator: the last element in the stack is the sum of all
+  TObjArray* arr = sstack->GetStack()->GetStack();
+  TH1D* denom = (TH1D*) arr->At(arr->GetEntries()-1);
+  ////  denom->Print();
+  double KS_test = 0;
+  if(rdhist->Integral()>0 && denom->Integral()>0)
+    KS_test = rdhist->KolmogorovTest(denom);
+
+  //  m_pad1->cd();
+  TLatex* text = new TLatex();
+  text->SetTextFont(42);
+  text->SetNDC();
+  text->SetTextColor(kBlack);
+  text->SetTextSize(0.06);
+  if (bSingleEPS)  text->SetTextSize(0.04);
+  text->SetTextAlign(11);
+  TString info = TString::Format("KS-test ");
+  text->DrawLatex(0.75, 0.85, info.Data());
+  info = TString::Format("%3.4f ", KS_test);
+  text->DrawLatex(0.85, 0.85, info.Data());
+  //  if(KS_test>0) cout<<"KS_test = "<<KS_test<<endl;            
+  //  gPad->Update();
 }
 
 bool SPlotter::SetMinMax(vector<SHist*> hists)

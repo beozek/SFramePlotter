@@ -111,7 +111,7 @@ int main(int argc, char** argv)
   Bool_t ThetaFile           = steerfile->GetPlotThetaFile();
   Bool_t Logy                = steerfile->GetLogy();
   Bool_t IgnoreEmptyBins     = steerfile->GetIgnoreEmptyBins();
-
+  Bool_t KStest              = steerfile->GetKStest(); 
   TObjArray* ScaleSysUnc     = steerfile->GetScaleSysUnc();
   TArrayF  SysUncWeight      = steerfile->GetSysUncWeight();
   
@@ -182,6 +182,7 @@ int main(int argc, char** argv)
   pl.SetForPublication(ForPublication);
   pl.SetForPrelim(ForPrelim);
   pl.SetLogy(Logy);
+  pl.SetKStest(KStest);
   pl.SetIgnoreEmptyBins(IgnoreEmptyBins);
 
   if (ThetaFile){

@@ -28,6 +28,7 @@ SteerPlotter::SteerPlotter()
    bPlotThetaFile = false;
    bLogy = false;
    bZScoreInRatio = false;
+   bKStest = false;
 }
 
 SteerPlotter::~SteerPlotter()
@@ -243,3 +244,6 @@ TArrayF SteerPlotter::GetSamplesUnc(){return fSamplesUnc;}
 
 void SteerPlotter::SetSubstractBkgd(Bool_t flag){ bSubstractBkgd = flag; }
 Bool_t SteerPlotter::GetSubstractBkgd(){ return bSubstractBkgd; }
+
+void SteerPlotter::SetKStest(Bool_t flag){ bKStest = flag; }
+Bool_t SteerPlotter::GetKStest(){ return bKStest; }

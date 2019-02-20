@@ -112,6 +112,9 @@ public:
     void SetLogy(Bool_t flag);
     Bool_t GetLogy();
 
+    void SetKStest(Bool_t flag);
+    Bool_t GetKStest();
+
 private:
 
     Bool_t    bShapeNorm;         // Shape normalization?
@@ -131,6 +134,7 @@ private:
     Bool_t    bSingleEPS;         // make one EPS file for each histogram
     Bool_t    bPlotThetaFile;     // take input histograms from theta file
     Bool_t    bIgnoreEmptyBins;   // ignore empty bins in the ratio
+    Bool_t    bKStest;            // print KS test value
     Int_t     fNumOfSamples;      // how many analysis samples should be plotted
     Float_t   fLumi;              // integrated luminosity of sample
     Float_t   fSysError;          // systematic error on normalisation

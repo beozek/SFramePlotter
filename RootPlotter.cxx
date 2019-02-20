@@ -51,7 +51,7 @@ RootPlotter::RootPlotter()
   bSubstractBkgd = false;
   bPlotRatio = false;
   bDrawLumi = false;
-
+  bKStest = false;
 }
 
 RootPlotter::~RootPlotter()
@@ -967,6 +967,19 @@ void RootPlotter::PlotHistos(const char* psfilename)
 	  text2->Draw();
 	}
 
+	// // KS test
+	// // ToDO: only for stackhist, add other cases
+	// //https://root.cern.ch/doc/master/classTH1.html#a2747cabe9ebe61c2fdfd74ff307cef3a 
+	// if(bKStest){
+	//   if (StackHist){     
+	//   TH1D* dataHist = (TH1D*) FirstHist->Clone();
+	//   TObjArray* arr = StackHist->GetStack();
+	//     // the last element is the sum
+	//   TH1D* MCHist = (TH1D*) arr->At(arr->GetEntries()-1);
+	//   double KS_test = dataHist->KolmogorovTest(MCHist);
+	//   cout<<"KS_test = "<<KS_test<<endl;
+	//   }     
+	// }
 	////////////////////////
 	// draw the ratio     //
 	////////////////////////
