@@ -1,0 +1,52 @@
+SteerPlotter(){
+  
+  // steering for the plotter
+
+//  fCycleName = "/nfs/dust/cms/user/karavdia/ZprimeSemiLeptonic/102X_v1/Analysis/RunII_2018_AB/DeepJetBtagtight/electron/uhh2.AnalysisModuleRunner";
+//  fCycleName = "/nfs/dust/cms/user/karavdia/ZprimeSemiLeptonic/102X_v1/Analysis/RunII_2018_AB/DeepCSVBtagtight/electron/uhh2.AnalysisModuleRunner";
+  fCycleName = "/nfs/dust/cms/user/karavdia/ZprimeSemiLeptonic/102X_v1/Analysis/RunII_2018_AB/CSVBtagtight/electron/uhh2.AnalysisModuleRunner";
+
+//  fInputFiles    = "DATA.DATA.root, MC.WJets.root,MC.TTToSemiLeptonic_2018.root,  MC.ST*, MC.QCD_HT*, MC.ZprimeToTTJet_M1000_2018.root, MC.ZprimeToTTJet_M2000_2018.root, MC.ZprimeToTTJet_M5000_2018.root"; // name of the input files (second part)
+  fInputFiles    = "DATA.DATA.root, MC.WJets.root,MC.TTbarToSemiLeptonicCorrectedCS_2018.root,  MC.ST*, MC.QCD_HT*, MC.ZprimeToTTJet_M1000_2018.root, MC.ZprimeToTTJet_M2000_2018.root, MC.ZprimeToTTJet_M5000_2018.root"; // name of the input files (second part)
+  fSampleNames   = "Data, WJets, TTbar, ST, QCD, Z'_ttjet_M1000, Z'_ttjet_M2000, Z'_ttjet_M5000"; // name of chains to be plotted
+  fSamplesWeight = "1.0,   1.0,  1.0, 1.0, 1.0, 1.0, 1.0, 1.0"; // weights applied to the samples (same order as in fInputFiles)
+  fSamplesUnc  = "0.0,  0.0,  0.00, 0.0, 0.0, 0.0, 0.0, 0.0"; // normalisation uncertainty of individual samples 
+  fHistColors =  "1,    416, 632, 400, 432, 420, 418, 416";   // the colors of the histograms, negative numbers mean no filling
+  fHistMarkers = "20,   0,     0, 0, 0,-1, -1, -1";   // histogram markers (0=solid line, -1=dashed line, 24=open circle...)
+ // fSamplesToStack = "TTToSemiLeptonic_2018,  WJets, QCD_HT, ST"; // the names of chains which you would like to stack (same as in input filenames)
+ fSamplesToStack = "TTbarToSemiLeptonicCorrectedCS_2018,  WJets, QCD_HT, ST"; // the names of chains which you would like to stack (same as in input filenames)
+
+
+
+
+//fOutputPsFile = "/afs/desy.de/user/k/karavdia/www/Zprime_plots/2018TEST_correctedTTbarCS/DeepCSVBtagtight/electron/RunII_Electron_.ps";
+fOutputPsFile = "/afs/desy.de/user/k/karavdia/www/Zprime_plots/2018TEST_correctedTTbarCS/CSVBtagtight/electron/RunII_Electron_.ps";
+
+  bRatioPlot = true;   // plot ratio histograms?
+//  bZScoreInRatio = true;   // plot z-score instead of usual ratio
+  bZScoreInRatio = false;   // plot z-score instead of usual ratio
+  bDrawLegend = true;   // draw a legend on each histogram? (otherwise only on the first one in each ps file)
+  bShapeNorm = false;   // shape normalization? 
+//  bShapeNorm = true;   // shape normalization? 	  
+  bPortrait = true;    // portrait or landscape?
+  bDrawEntries = false; // draw the histogram entries?
+  fLumi = 20.265; // luminosity of sample
+//  fLumi = 8.4960; // luminosity of sample	
+  fSysError = 0.025; // luminosity uncertainty
+  bDrawLumi = true;   // plot ratio histograms?
+  bForPrelim = false; // draw text saying "CMS Preliminary" -> only works if bDrawLumi is on
+  bForPublication = false; // draw text saying "CMS" -> only works if bDrawLumi is on
+  bSingleEPS = true; //Single EPS file   
+//  bKStest = true; //print KS test value   
+  bKStest = false; //print KS test value   
+// bLogy = true;
+}
+
+
+// Colors from ROOT:
+// num EColor { kWhite =0,   kBlack =1,   kGray=920
+//             ,kRed   =632, kGreen =416, kBlue=600, kYellow=400, kMagenta=616, kCyan=432
+//             ,kOrange=800, kSpring=820, kTeal=840, kAzure =860, kViolet =880, kPink=900};
+//
+// default QCD   = 867 -> lighter version of Azure
+// default ttbar = 810 -> dark version of Orange (rather red)
