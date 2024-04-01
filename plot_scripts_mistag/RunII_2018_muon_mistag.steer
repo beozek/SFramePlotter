@@ -1,0 +1,42 @@
+SteerPlotter(){
+  
+  // steering for the plotter
+
+fCycleName = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/output_v2mistag/UL18/muon/workdir_Analysis_UL18_muon_mistag_new/nominal/uhh2.AnalysisModuleRunner";
+
+fInputFiles = "DATA.DATA.root, TTToSemiLeptonic.root, DYJets.root, WJets.root, ST.root, QCD.root, Diboson.root, TTToOthers.root"; 
+
+fSampleNames   = "Data, TTToSemiLeptonic, DYJets, WJets, ST, QCD, Diboson, TTToOthers";
+fSamplesWeight = "1.0 ,1.0,1.0, 1.0, 1.0, 1.0, 1.0, 1.0 ";
+fSamplesUnc  =   "0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0";
+fHistMarkers =   "20, 0, 0, 0, 0, 0, 0 ,0";
+fHistColors =    "1, 632, 600, 416, 400, 867, 800, 810";
+
+fSamplesToStack = "TTToSemiLeptonic, DYJets, WJets, ST, QCD, Diboson, TTToOthers "; // the names of chains which you would like to stack (same as in input filenames)
+
+fOutputPsFile = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/output_v2mistag/output_plots_new/UL18_new/muon4/RunII_Mu_.ps";
+
+bRatioPlot = true;   // plot ratio histograms?
+bZScoreInRatio = false;   // plot z-score instead of usual ratio
+bDrawLegend = true;   // draw a legend on each histogram? (otherwise only on the first one in each ps file)
+bShapeNorm = false;   // shape normalization? 
+bPortrait = true;    // portrait or landscape?
+bDrawEntries = false; // draw the histogram entries?
+fLumi = 58.9; // luminosity of sample
+fSysError = 0.025; // luminosity uncertainty
+bDrawLumi = true;   // plot ratio histograms?
+bForPrelim = true; // draw text saying "CMS Preliminary" -> only works if bDrawLumi is on
+bForPublication = true; // draw text saying "CMS" -> only works if bDrawLumi is on
+bSingleEPS = true; //Single EPS file   
+bKStest = false; //print KS test value   
+bLogy = false;
+}
+
+
+// Colors from ROOT:
+// num EColor { kWhite =0,   kBlack =1,   kGray=920
+//             ,kRed   =632, kGreen =416, kBlue=600, kYellow=400, kMagenta=616, kCyan=432
+//             ,kOrange=800, kSpring=820, kTeal=840, kAzure =860, kViolet =880, kPink=900};
+//
+// default QCD   = 867 -> lighter version of Azure
+// default ttbar = 810 -> dark version of Orange (rather red)

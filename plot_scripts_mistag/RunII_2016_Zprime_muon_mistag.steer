@@ -2,7 +2,7 @@ SteerPlotter(){
   
   // steering for the plotter
 
-fCycleName = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/output/UL18/muon/workdir_Zprime_Analysis_UL18_muon_mistag/nominal/uhh2.AnalysisModuleRunner";
+fCycleName = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/output/UL16/electron/uhh2.AnalysisModuleRunner";
 
 fInputFiles = "DATA.DATA.root, TTToSemiLeptonic.root, DYJets.root, WJets.root, ST.root, QCD.root, Diboson.root, TTToOthers.root"; 
 
@@ -14,7 +14,7 @@ fHistColors =    "1, 632, 600, 416, 400, 867, 800, 810";
 
 fSamplesToStack = "TTToSemiLeptonic, DYJets, WJets, ST, QCD, Diboson, TTToOthers "; // the names of chains which you would like to stack (same as in input filenames)
 
-fOutputPsFile = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/mistag_plots_4/RunII_Mu_.ps";
+fOutputPsFile = "/nfs/dust/cms/user/beozek/uuh2-106X_v2/CMSSW_10_6_28/src/UHH2/ZprimeSemiLeptonic/output/UL16/electron/mistag_plots_16_electron_ttag/RunII_Mu_.ps";
 
 bRatioPlot = true;   // plot ratio histograms?
 bZScoreInRatio = false;   // plot z-score instead of usual ratio
@@ -22,8 +22,7 @@ bDrawLegend = true;   // draw a legend on each histogram? (otherwise only on the
 bShapeNorm = false;   // shape normalization? 
 bPortrait = true;    // portrait or landscape?
 bDrawEntries = false; // draw the histogram entries?
-
-fLumi = 58.9; // luminosity of sample
+fLumi = 36.3; // luminosity of sample
 fSysError = 0.025; // luminosity uncertainty
 bDrawLumi = true;   // plot ratio histograms?
 bForPrelim = true; // draw text saying "CMS Preliminary" -> only works if bDrawLumi is on
